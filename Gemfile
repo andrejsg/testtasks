@@ -6,13 +6,10 @@ gem 'rack', '~> 1.4.5'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-group :production, :mysql do
-  gem 'mysql2'
-end
+gem 'mysql2'
 
 group :development, :test do
-  gem 'sqlite3'
-  gem 'minitest'
+  gem 'minitest', '4.7.5'
   gem 'thor', '= 0.14.6'
 end
 

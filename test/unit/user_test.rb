@@ -6,7 +6,7 @@ class UserTest < ActiveSupport::TestCase
   # end
 
   def setup 
-  	@user = User.new(first_name: "John", last_name: "Smith", email: "johnsmith@somemail.com")
+  	@user = User.new(first_name: "John", last_name: "Smith", email: "johnsmith@somemail.com", password: "password", password_confirmation: "password")
   end
 
   test "should be valid" do
@@ -51,5 +51,10 @@ class UserTest < ActiveSupport::TestCase
     new_user.email = @user.email.upcase
     @user.save
     assert_equal false, new_user.valid?
+  end
+
+  test "user password is a minimum 8 symbols length" do
+    @user.password = @user.password_confirmation = "pass"
+    assert_equal false, @user.valid?
   end
 end

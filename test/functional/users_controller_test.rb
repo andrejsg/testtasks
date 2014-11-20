@@ -21,7 +21,7 @@ class UsersControllerTest < ActionController::TestCase
       post :create, user: { email: "jonniesmeet@mail.com", first_name: "Jonnie", last_name: "Smeet", password: "password", password_confirmation: "password" }
     end
 
-    assert_redirected_to user_path(assigns(:user))
+    assert_redirected_to static_pages_index_path
   end
 
   test "should show user" do
@@ -35,7 +35,7 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test "should update user" do
-    put :update, id: @user, user: { email: @user.email, first_name: @user.first_name, last_name: @user.last_name }
+    put :update, id: @user, user: { email: @user.email, first_name: @user.first_name, last_name: @user.last_name, password: "password", password_confirmation: "password" }
     assert_redirected_to user_path(assigns(:user))
   end
 

@@ -9,6 +9,7 @@ RailsApp::Application.routes.draw do
   get "static_pages/index"
 
   resources :users
+  resources :account_activations, only: :edit
 
 
   # The priority is based upon order of creation:

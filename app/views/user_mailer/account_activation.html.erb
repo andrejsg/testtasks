@@ -1,0 +1,10 @@
+<h1>Testtasks</h1>
+
+<p>Sveicināti <%= @user.first_name %></p>
+
+<p>
+Lai apstiprinātu jūsu reģistrāciju, spiediet šeit:
+</p>
+
+<%= link_to "Apstiprināt", edit_account_activation_url(@user.activation_token,
+                                                    email: @user.email) %>

@@ -1,0 +1,6 @@
+Sveicināti <%= @user.first_name %>
+
+Lai apstiprinātu jūsu reģistrāciju, spiediet šeit:
+
+<%= edit_account_activation_url(@user.activation_token, email: @user.email) %>
+

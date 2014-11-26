@@ -9,6 +9,12 @@
 <body>
 
 <%= yield %>
+<%= current_user.email if signed_in? %>
+<%= flash[:success] %>
+<%= flash[:alert] %>
+<%= flash[:info] %>
+<%= flash[:danger] %>
+<%= params %>
 
 </body>
 </html>

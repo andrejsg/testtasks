@@ -13,9 +13,9 @@ RailsApp::Application.configure do
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false
 
-
   # Don't care if the mailer can't send
-  config.action_mailer.default_url_options = { :host => 'http://testtasks-namslv.rhcloud.com' }
+  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+
   
   # change to true to allow email to be sent during development
   config.action_mailer.perform_deliveries = true

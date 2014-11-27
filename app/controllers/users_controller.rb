@@ -46,7 +46,7 @@ class UsersController < ApplicationController
 
     if @user.save
       @user.send_activation_email
-      flash[:info] = "Lūdzu pārbaudiet savu e-pastu."
+      flash[:info] = "Check your mail"
       redirect_to static_pages_index_path
     else
       render "new"

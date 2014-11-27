@@ -12,13 +12,13 @@ class SessionsController < ApplicationController
         params[:session][:remember_me] == '1' ? remember(user) : forget_user(user)
         redirect_back_or user
       else
-        message  = "Reģistrācija nav apstiprināta."
-        message += "Pārbaudiet savu e-pastu."
+        message  = "Registration is  not confirmed"
+        message += "Check your mail"
         flash[:warning] = message
         redirect_to root_url
       end
     else
-      flash.now[:danger] = 'Nepareiza e-pasta adrese vai parole.'
+      flash.now[:danger] = 'Wrong email or password'
       render 'new'
     end
   end

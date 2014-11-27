@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :email, :first_name, :last_name, :password, :password_confirmation, :reset_sent_at
+  attr_accessible :email, :first_name, :last_name, :password, :password_confirmation, :reset_sent_at, :activation_digest
   attr_accessor :activation_token, :remember_token, :reset_token
 
   before_save :email_downcase

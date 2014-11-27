@@ -27,11 +27,11 @@ class PasswordResetsController < ApplicationController
 
   def update
     if passwords_blank?
-      flash.now[:danger] = "Nav aizpildīti visi nepieciešamie lauki"
+      flash.now[:danger] = "Missing information"
       render 'edit'
     elsif @user.update_attributes(params[:user])
       log_in @user
-      flash[:success] = "Parole atjaunota"
+      flash[:success] = "Reset password"
       redirect_to root_path
     else
       render 'edit'
@@ -59,7 +59,7 @@ class PasswordResetsController < ApplicationController
 
   def check_expiration
     if @user.password_reset_expired?
-      flash[:danger] = "Paroles atjaunošanai atvēlētais laiks ir beidzies. Mēģiniet vēlreiz."
+      flash[:danger] = "Password reseting link is expired"
       redirect_to new_password_reset_url
     end
   end

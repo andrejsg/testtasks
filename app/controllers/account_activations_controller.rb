@@ -3,8 +3,9 @@
 class AccountActivationsController < ApplicationController
 
 	def edit
-    @user = User.find_by_email(params[:email])
-    redirect_to @user
+    user = User.find_by_email(params[:email])
+    user.activate
+    redirect_to user
 =begin
     if user && !user.activated && user.authenticated?(:activation, params[:id])
       user.activate

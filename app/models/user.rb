@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   attr_accessible :email, :first_name, :last_name, :password, :password_confirmation, :reset_sent_at, :activation_digest, 
                   :password_digest, :remember_digest, :activated, :activated_at, :reset_digest
-  attr_accessor :activation_token, :remember_token, :reset_token, :activation_digest, :activated, :activated_at
+  attr_accessor :activation_token, :remember_token, :reset_token
 
   before_save :email_downcase
   before_save :create_activation_digest

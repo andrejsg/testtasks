@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
-  attr_accessible :email, :first_name, :last_name, :password, :password_confirmation, :reset_sent_at, :activation_digest
+  attr_accessible :email, :first_name, :last_name, :password, :password_confirmation, :reset_sent_at, :activation_digest, 
+                  :password_digest, :remember_digest, :activated, :activated_at, :reset_digest
   attr_accessor :activation_token, :remember_token, :reset_token
 
   before_save :email_downcase
@@ -64,8 +65,6 @@ class User < ActiveRecord::Base
   def password_reset_expired?
     reset_sent_at.to_time < 2.hours.ago
   end
-  
-  private
 
   def email_downcase
     self.email = email.downcase

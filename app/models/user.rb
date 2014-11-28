@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   attr_accessor :activation_token, :remember_token, :reset_token, :activation_digest
 
   before_save :email_downcase
-  before_create :create_activation_digest
+  before_save :create_activation_digest
 
   EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 

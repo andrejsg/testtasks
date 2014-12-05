@@ -1,12 +1,19 @@
-<h1>StaticPages#index</h1>
-<p>Find me in app/views/static_pages/index.html.erb</p>
+<h1>Top 5</h1>
+
 <% if signed_in? %>
 	<%= link_to 'Iziet', logout_path, method: :delete %>
 <% end %>
 
-<div id="test">
-	<%= link_to "Hello from there", class: "test" %>
-</div>
+<% @rss.map do |rss| %>
+<p>
+	<h5><%= rss.title %></h5>
+	<%= raw rss.description %>
+</p>
+
+	<br />
+<% end %>
+
+<%= button_tag "hello", class: "btn btn-danger" %>
 
 
 

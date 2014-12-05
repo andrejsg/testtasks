@@ -11,8 +11,12 @@ RailsApp::Application.routes.draw do
   delete "logout" => "sessions#destroy"
 
   get "static_pages/index"
-
-  resources :users
+  #get "users/check_email", :controller => "users", :action => "check_email"
+  resources :users do
+    collection do 
+      get 'check_email'
+    end
+  end
   resources :account_activations, only: :edit
   resources :password_resets, only: [:new, :create, :edit, :update]
 

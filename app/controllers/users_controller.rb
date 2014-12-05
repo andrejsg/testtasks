@@ -1,6 +1,7 @@
 #encoding: utf-8
 
 class UsersController < ApplicationController
+
   # GET /users
   # GET /users.json
   def index
@@ -44,12 +45,13 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
 
-    if @user.save
-      @user.send_activation_email
-      flash[:info] = "Check your mail"
-      redirect_to root_path
-    else
-      render "new"
+    respond_to do |format|
+      if @user.save
+        @user.send_activation_email
+        format.html { redirect_to root_path, :notice => "User created" }
+      else
+        format.html { render :action => "new" }
+      end
     end
   end
 
@@ -80,4 +82,16 @@ class UsersController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def check_email
+
+    if !User.where('email LIKE ?', "%#{ params[:email] }%").first.nil? 
+      @message = "EMAIL ALREADY HAS BEEN TAKEN!"
+      respond_to do |format|
+        format.js
+      end
+    end
+    
+  end
+
 end

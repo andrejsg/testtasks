@@ -74,5 +74,11 @@ class User < ActiveRecord::Base
     self.activation_token = User.new_token
     self.activation_digest = User.digest(activation_token)
   end
+
+  def self.email_exists?(email)
+    # if user with given email exists return false
+    where('email LIKE ?', "%#{ email }%").first.nil? 
+  end
+
 end
   

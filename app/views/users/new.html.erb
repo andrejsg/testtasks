@@ -1,3 +1,5 @@
+<div id="notice"></div>
+
 <% if @user.errors.any? %>
   <div id="error_explanation">
     <div class="alert alert-danger">
@@ -18,13 +20,14 @@
   <div class="col-md-6 col-md-offset-3">
     <%= form_for(@user) do |f| %>
       <%= f.label :first_name, "First name" %>
-      <%= f.text_field :first_name %>
+      <%= f.text_field(:first_name) %>
 
       <%= f.label :last_name, "Last name" %>
       <%= f.text_field :last_name %>
 
       <%= f.label :email, "E-pasts" %>
-      <%= f.text_field :email %>
+      <%#= f.text_field :email, :onchange => "this.style.backgroundColor='#990000'" %>
+      <%= f.text_field :email, id: "email_field" %>
 
       <%= f.label :password, "Parole" %>
       <%= f.password_field :password %>
@@ -32,7 +35,7 @@
       <%= f.label :password_confirmation, "Confirm password" %>
       <%= f.password_field :password_confirmation %>
 
-      <%= f.submit "Signup", class: "btn btn-primary" %>
+        <%= f.submit "Signup", class: "btn btn-primary" %>
     <% end %>
   </div>
 </div>

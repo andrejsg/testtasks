@@ -13,3 +13,45 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
+
+
+$(document).on("change", '#email_field', function() {
+		var email_field_value = $("#email_field").val();
+    $.ajax({
+    		type: "GET",
+    		url: "/users/check_email",
+    		data: { email: email_field_value }
+    });
+});
+
+$(document).on("blur", '#email_field', function() {
+		var email_field_value = $("#email_field").val();
+    $.ajax({
+    		type: "GET",
+    		url: "/users/check_email",
+    		data: { email: email_field_value }
+    });
+});
+
+$(document).on("focus", '#email_field', function() {
+	var notice_text = $("#notice").text();
+	if ( $("#notice").not(":empty") ) {
+		$("#notice").empty();
+	}
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

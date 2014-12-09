@@ -2,5 +2,5 @@
 
 <p>You received this email because of registration on <%= @url %>.
 	Please confirm your registration by clicking following link 
-	<%= link_to "Aktivizēt", edit_account_activation_url(@user.activation_token, email: @user.email) %></p>
+	<%= link_to "Confirm", edit_account_activation_url(@user.activation_token, email: @user.email) %></p>
 

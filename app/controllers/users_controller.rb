@@ -10,8 +10,12 @@ class UsersController < ApplicationController
     flash[:danger] = "You don't have rights to access this area."
 
     respond_to do |format|
-      format.html { render :edit }
-      format.json { render json: @users }
+      if signed_in?
+        format.html { render :edit }
+        format.json { render json: @users }
+      else
+        format.html { redirect_to login_path }
+      end
     end
   end
 

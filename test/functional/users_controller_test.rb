@@ -2,12 +2,15 @@ require 'test_helper'
 
 class UsersControllerTest < ActionController::TestCase
   setup do
-    @user = User.create(first_name: "John", last_name: "Smith", email: "johnsmith@somemail.com", password: "password", password_confirmation: "password")
+    @user = User.create(first_name: "John", last_name: "Smith", 
+                        email: "johnsmith@somemail.com", password: "password", 
+                        password_confirmation: "password",
+                        activated: true)
   end
 
   test "should get index" do
     get :index
-    assert_response :success
+    assert_response 302
     assert_not_nil assigns(:users)
   end
 
@@ -21,15 +24,16 @@ class UsersControllerTest < ActionController::TestCase
       post :create, user: { email: "jonniesmeet@mail.com", first_name: "Jonnie", last_name: "Smeet", password: "password", password_confirmation: "password" }
     end
 
-    assert_redirected_to static_pages_index_path
+    assert_redirected_to login_path
   end
 
   test "should show user" do
     get :show, id: @user
-    assert_response :success
+    assert_response 302
   end
 
   test "should get edit" do
+    session[:user_id] = @user.id
     get :edit, id: @user
     assert_response :success
   end
@@ -44,6 +48,6 @@ class UsersControllerTest < ActionController::TestCase
       delete :destroy, id: @user
     end
 
-    assert_redirected_to users_path
+    assert_redirected_to login_path
   end
 end

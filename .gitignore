@@ -14,3 +14,6 @@
 /log/*.log
 /tmp
 .project
+
+# Environment files that may contain sensitive data
+.env

@@ -1,24 +1,23 @@
-<h1>Top 5</h1>
+<div class="well"><h1>Top 5</h1></div>
 
-
-
-<% @rss.map do |rss| %>
-<p>
-	<h5><%= rss.title %></h5>
-	<%= raw rss.description %>
-</p>
-
-	<br />
+<% @rss.each do |rss| %>
+	<div class="panel panel-default">
+	  <div class="panel-heading">
+	    <h3 class="panel-title"><%= rss.title %></h3>
+	  </div>
+	  <div class="panel-body">
+	  	<% if image_exist?(rss) %>
+	  		<div class="col-md-2">
+	  			<%= image_tag extract_image_url(rss) %><br />
+	  		</div>
+	  		<div class="col-md-8">
+	  			<%= raw cut_image_url(rss) %>
+	  		</div>
+	  	<% else %>
+	  		<div class="col-md-10">
+	  			<%= raw cut_image_url(rss) %>
+	  		</div>
+	  	<% end %>
+	  </div>
+	</div>
 <% end %>
-
-
-
-
-
-
-
-
-<%= signed_in? %>
-<%= current_user %>
-	
-

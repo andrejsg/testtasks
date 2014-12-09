@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>RailsApp</title>
+  <title>Testtask</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
@@ -9,6 +9,55 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
+	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  	<div class="container">
+    	<% if signed_in? %>
+    		<% unless request.params[:controller] == "static_pages" %>
+    			<%= link_to "News", static_pages_index_path, class: "navbar-text" %>
+    			<% end %>
+    		<span class="navbar-text"> You are signed in as <%= current_user.email %></span>
+    		<%= link_to "Logout", logout_path, method: "delete", class: "navbar-text navbar-right" %>
+    		<%= link_to "Delete profile", user_path(current_user), method: "delete", class: "navbar-text navbar-right" %>
+    		<%= link_to "Edit profile", edit_user_path(current_user), class: "navbar-text navbar-right" %>
+    	<% else %>
+    		<%= link_to "Reset password", new_password_reset_path, class: "navbar-text navbar-right" %>
+    		<span class="navbar-text navbar-right">or</span> 
+    		<%= link_to "Sign Up", signup_path, class: "navbar-text navbar-right" %> 
+    	<% end %>
+  	</div>
+	</nav>
+
+	<!-- start: flash_messages partial -->
+
+			
+				<!-- start: alerts -->
+				<% [:warning, :danger, :info, :success].each do |level| %>
+		  	<% unless flash[level].blank? %>
+		  	<div class="alert <%= "alert-#{(level)}" %> alert-dismissable" id="main-alert">
+		    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+		      <%= content_tag :p, flash[level] %>
+		  	</div>
+		  	<% end %>
+				<% end %>
+		        
+				<!-- start: devise alerts -->
+				<% if notice %>
+		  	<div class="alert alert-success alert-dismissable" id="main-alert">
+		    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+		      <%= notice %>                
+		  	</div>
+				<% end %>
+
+				<% if alert %>
+		  	<div class="alert alert-danger alert-dismissable" id="main-alert">
+		    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+		      <%= alert %>
+		  	</div>
+		  	<% end %>
+			
+				<!-- end: devise alerts -->
+				<!-- end: alerts -->
+
 
 <div class="container">
 	<div class="col-md-2">

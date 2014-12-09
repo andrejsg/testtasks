@@ -1,6 +1,9 @@
-Sveicināti <%= @user.first_name %>
+Hello,  <%= @user.first_name %>
 
-Lai apstiprinātu jūsu reģistrāciju, spiediet šeit:
+You received this email because of registration on <%= @url %>.
+Please confirm your registration by using this link 
+	<%= edit_account_activation_url(@user.activation_token, email: @user.email) %>
 
-<%= edit_account_activation_url(@user.activation_token, email: @user.email) %>
+
+
 

@@ -12,3 +12,28 @@
  *= require_tree .
  *= require bootstrap
  */
+
+body {
+ 		padding-top: 5%;
+}
+
+.page-title {
+ 		padding-top: 20%;
+ 		padding-left: 30px;
+}
+
+form {
+ 		padding-top: 2%;
+}
+
+.form-control {
+ 		margin-bottom: 15px !important;
+}
+
+.links {
+		padding-top: 50%;
+}
+
+#email_already_taken {
+		color: red !important;
+}

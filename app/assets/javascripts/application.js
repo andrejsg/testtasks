@@ -36,9 +36,9 @@ $(document).on("blur", '#email_field', function() {
 });
 
 $(document).on("focus", '#email_field', function() {
-	var notice_text = $("#notice").text();
-	if ( $("#notice").not(":empty") ) {
-		$("#notice").empty();
+	var notice_text = $("#email_already_taken").text();
+	if ( $("#email_already_taken").not(":empty") ) {
+		$("#email_already_taken").empty();
 	}
 });
 

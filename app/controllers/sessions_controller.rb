@@ -2,6 +2,9 @@
 
 class SessionsController < ApplicationController
   def new
+    if signed_in?
+      redirect_to static_pages_index_path
+    end
   end
 
   def create
@@ -10,12 +13,12 @@ class SessionsController < ApplicationController
       if user.activated?
         log_in user
         params[:session][:remember_me] == '1' ? remember(user) : forget_user(user)
-        redirect_back_or user
+        redirect_to static_pages_index_path
       else
-        message  = "Registration is  not confirmed"
-        message += "Check your mail"
+        message  = "Registration is  not confirmed. "
+        message += "Check your mail."
         flash[:warning] = message
-        redirect_to root_url
+        redirect_to login_path
       end
     else
       flash.now[:danger] = 'Wrong email or password'
@@ -25,6 +28,6 @@ class SessionsController < ApplicationController
 
   def destroy
     log_out if signed_in?
-    redirect_to root_path
+    redirect_to login_path
   end
 end

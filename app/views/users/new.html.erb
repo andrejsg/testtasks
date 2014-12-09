@@ -1,5 +1,3 @@
-<div id="notice"></div>
-
 <% if @user.errors.any? %>
   <div id="error_explanation">
     <div class="alert alert-danger">
@@ -13,29 +11,62 @@
   </div>
 <% end %>
 
-<% provide(:title, 'Sign up') %>
-<h1>Sign up</h1>
+<div class="col-md-8 col-md-offset-3">
+  <h2 class="page-title">Create new account</h2>
+</div>
 
 <div class="row">
-  <div class="col-md-6 col-md-offset-3">
+  <div class="col-md-8 col-md-offset-1">
+  
     <%= form_for(@user) do |f| %>
-      <%= f.label :first_name, "First name" %>
-      <%= f.text_field(:first_name) %>
+      <form class="form-horizontal" role="form">      
+      <div class="form-group">
+        <%= f.label :first_name, "First name", class: "col-md-4 control-label" %>
+        <div class="col-md-8">
+          <%= f.text_field :first_name, class: "form-control" %>
+        </div>  
+      </div>
 
-      <%= f.label :last_name, "Last name" %>
-      <%= f.text_field :last_name %>
+      <div class="form-group">
+        <%= f.label :last_name, "Last name", class: "col-md-4 control-label" %>
+        <div class="col-md-8">
+            <%= f.text_field :last_name, class: "form-control" %>
+        </div>
+      </div>
 
-      <%= f.label :email, "E-pasts" %>
-      <%#= f.text_field :email, :onchange => "this.style.backgroundColor='#990000'" %>
-      <%= f.text_field :email, id: "email_field" %>
+      <div class="col-md-9 col-md-offset-5">
+        <p id="email_already_taken"></p>
+      </div>
 
-      <%= f.label :password, "Parole" %>
-      <%= f.password_field :password %>
+      <div class="form-group">
+        <%= f.label :email, "E-pasts", class: "col-md-4 control-label" %>
+        <div class="col-md-8">
+            <%= f.text_field :email, id: "email_field", class: "form-control" %>
+        </div>
+      </div>
 
-      <%= f.label :password_confirmation, "Confirm password" %>
-      <%= f.password_field :password_confirmation %>
+      <div class="form-group">
+        <%= f.label :password, "Parole", class: "col-md-4 control-label" %>
+        <div class="col-md-8">
+            <%= f.password_field :password, class: "form-control" %>
+        </div>
+      </div>
 
-        <%= f.submit "Signup", class: "btn btn-primary" %>
-    <% end %>
+      <div class="form-group">
+        <%= f.label :password_confirmation, "Confirm password", class: "col-md-4 control-label" %>
+        <div class="col-md-8">
+            <%= f.password_field :password_confirmation, class: "form-control" %>
+        </div>
+      </div>
+
+      <div class="col-md-9 col-md-offset-3">
+        <%= f.submit "Signup", class: "btn btn-link btn-lg btn-block" %> 
+      </div>
+
+    </form>
+<% end %>
+
+
   </div>
 </div>
+<%= request.env["HTTP_HOST"] %>

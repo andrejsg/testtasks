@@ -9,7 +9,7 @@ class AccountActivationsController < ApplicationController
       user.activate
       log_in user
       flash[:success] = "Account activated"
-      redirect_to user
+      redirect_to static_pages_index_path
     else
       flash[:danger] = "Account is not activated"
       redirect_to root_url

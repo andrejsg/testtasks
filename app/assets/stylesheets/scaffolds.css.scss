@@ -39,14 +39,14 @@ div {
   color: green;
 }
 
-.field_with_errors {
-  padding: 2px;
-  background-color: red;
-  display: table;
+.field_with_errors {}
+
+.field_with_errors .form-control {
+    background-color: red; 
 }
 
 #error_explanation {
-  width: 450px;
+  width: 100%;
   border: 2px solid red;
   padding: 7px;
   padding-bottom: 0;

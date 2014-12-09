@@ -6,9 +6,11 @@ class UsersController < ApplicationController
   # GET /users.json
   def index
     @users = User.all
+    @user = current_user
+    flash[:danger] = "You don't have rights to access this area."
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html { render :edit }
       format.json { render json: @users }
     end
   end
@@ -19,8 +21,16 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @user }
+      if signed_in?
+        if @user.id != current_user.id
+          format.html { redirect_to edit_user_path(@user) }
+          flash[:danger] = "You don't have rights to access this area."
+        end
+        format.html { render :edit }
+        format.json { render json: @user }
+      else
+        format.html { redirect_to login_path, alert: "You need to login first." }
+      end
     end
   end
 
@@ -37,7 +47,15 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    @user = User.find(params[:id])
+    if signed_in?
+      @user = User.find(params[:id])
+      if @user.id != current_user.id
+        redirect_to current_user
+        flash[:danger] = "You don't have rights to access this area."
+      end
+    else
+      redirect_to login_path, alert: "You need to login first."
+    end
   end
 
   # POST /users
@@ -48,7 +66,8 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save
         @user.send_activation_email
-        format.html { redirect_to root_path, :notice => "User created" }
+        format.html { redirect_to login_path, :notice => "User created. 
+                                                          Before login you need confirm your registration. Check your email." }
       else
         format.html { render :action => "new" }
       end
@@ -78,7 +97,7 @@ class UsersController < ApplicationController
     @user.destroy
 
     respond_to do |format|
-      format.html { redirect_to users_url }
+      format.html { redirect_to login_url }
       format.json { head :no_content }
     end
   end
